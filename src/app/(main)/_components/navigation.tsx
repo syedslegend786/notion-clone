@@ -71,13 +71,13 @@ export function Navigation() {
         sidebarRef.current.style.setProperty("top", "0px");
         sidebarRef.current.style.setProperty("bottom", "0px");
         sidebarRef.current.style.setProperty("right", "0px");
-        navbarRef.current.style.setProperty("width", "0px");
+        navbarRef.current.style.setProperty("left", "0px");
         // navbarRef.current.style.setProperty("opacity", "0");
       } else {
         sidebarRef.current.style.removeProperty("position");
         sidebarRef.current.style.width = isMobile ? "100%" : `${MIN_WIDTH}px`;
         navbarRef.current.style.left = `${MIN_WIDTH}px`;
-        navbarRef.current.style.setProperty("width", "100%");
+        // navbarRef.current.style.setProperty("width", "100%");
         // navbarRef.current.style.setProperty("opacity", "100");
       }
       setTimeout(() => {

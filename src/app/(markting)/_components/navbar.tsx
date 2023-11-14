@@ -10,8 +10,10 @@ import { ArrowRight, LogOut } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 import { URLS } from "@/utils/URLS";
-
-export function NavBar() {
+interface NavBarProps {
+  hideOnMobile?: boolean;
+}
+export function NavBar({ hideOnMobile = true }: NavBarProps) {
   const { data: session, status } = useSession();
   const isLoading = status === "loading";
   const { scrolled } = useTopScroll();
@@ -24,8 +26,15 @@ export function NavBar() {
         }
       )}
     >
-      <Logo />
-      <div className="md:ml-auto flex items-center gap-2">
+      <Link href={URLS.HOME}>
+        <Logo hideOnMobile={hideOnMobile} />
+      </Link>
+      <div
+        className={cn(" flex items-center gap-2", {
+          "md:ml-auto": hideOnMobile,
+          "ml-auto": !hideOnMobile,
+        })}
+      >
         <Link href={!session ? URLS.LOGIN : URLS.DOCUMENTS}>
           <Button className="mx-auto text-xs" variant={"ghost"}>
             Enter Jotion <ArrowRight className="h-4 w-4 ml-2" />

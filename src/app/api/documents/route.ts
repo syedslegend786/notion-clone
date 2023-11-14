@@ -11,14 +11,14 @@ export async function POST(req: Request) {
     }
     let body = await req.json();
     const args = await createDocumentSchema.parseAsync(body);
-    await db.document.create({
+    const newDocument = await db.document.create({
       data: {
         title: args.title,
         userId: session.user.id,
         parentId: args.parentId,
       },
     });
-    return new Response("Success");
+    return new Response(newDocument.id, { status: 200 });
   } catch (error: any) {
     return new NextResponse(error.message, { status: 500 });
   }

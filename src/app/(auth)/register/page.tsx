@@ -16,6 +16,8 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { handleApiError } from "@/utils/handleApiError";
 import { protectLoginRegister } from "@/hoc/protectLoginRegister";
+import Link from "next/link";
+import { URLS } from "@/utils/URLS";
 
 const registerSchema = z.object({
   email: z
@@ -59,9 +61,15 @@ const Register = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="dark:text-background-dark">
+                    Email
+                  </FormLabel>
                   <FormControl>
-                    <Input {...field} className="w-full" />
+                    <Input
+                      placeholder="Email"
+                      {...field}
+                      className="w-full dark:bg-gray-100 dark:text-black focus:ring-offset-0 ring-offset-0 focus-visible:ring-offset-0 dark:ring-background-dark"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -72,17 +80,36 @@ const Register = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="dark:text-background-dark">
+                    Password
+                  </FormLabel>
                   <FormControl>
-                    <Input {...field} className="w-full" />
+                    <Input
+                      placeholder="Password"
+                      {...field}
+                      className="w-full dark:bg-gray-100 dark:text-black focus:ring-offset-0 ring-offset-0 focus-visible:ring-offset-0 dark:ring-background-dark"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button disabled={isLoading} type="submit" className="w-full">
+            <Button
+              disabled={isLoading}
+              type="submit"
+              className="w-full dark:bg-background-dark dark:text-white dark:hover:bg-background-dark/70"
+            >
               Register
             </Button>
+            <p className="text-xs dark:text-background-dark font-semibold">
+              Already have account{" "}
+              <Link
+                href={URLS.LOGIN}
+                className="text-blue-500 font-semibold cursor-pointer"
+              >
+                Login now
+              </Link>
+            </p>
           </form>
         </Form>
       </div>

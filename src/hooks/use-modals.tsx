@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type ModalsType = "SettingsModal" | null;
+type ModalsType = "SettingsModal" | "CoverImageModal" | null;
 type UseModal = {
   modalType: ModalsType;
   onClose: () => void;

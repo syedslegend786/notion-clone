@@ -1,8 +1,15 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
-
-export function Logo() {
+interface LogoProps {
+  hideOnMobile?: boolean;
+}
+export function Logo({ hideOnMobile = true }: LogoProps) {
   return (
-    <div className="md:flex items-center gap-1 z-50 hidden ">
+    <div
+      className={cn("md:flex items-center gap-1 z-50", {
+        hidden: hideOnMobile,
+      })}
+    >
       <Image
         width={30}
         height={30}

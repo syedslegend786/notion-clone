@@ -34,10 +34,8 @@ export function SearchCommand() {
   const { isMounted } = useIsMounted();
   useEffect(() => {
     function down(e: KeyboardEvent) {
-      if (isMounted && !isOpen) {
-        e.preventDefault();
-      }
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
         onOpen();
       }
     }
