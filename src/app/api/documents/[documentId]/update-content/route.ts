@@ -1,8 +1,8 @@
-import { handleApiError } from "@/utils/handleApiError";
 import { updateContentSchema } from "../../utils";
 import { getServerSession } from "@/lib/actions";
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { handleBackendErrors } from "@/utils/handleBackendErrors";
 
 type Params = {
   params: { documentId: string };
@@ -36,7 +36,7 @@ export async function POST(request: Request, { params }: Params) {
       },
     });
     return new NextResponse("okay", { status: 200 });
-  } catch (error) {
-    return handleApiError(error);
+  } catch (error: any) {
+    return handleBackendErrors(error);
   }
 }
