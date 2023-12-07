@@ -21,7 +21,7 @@ const Documents = () => {
           className="object-contain dark:hidden"
         />
         <Image
-          src={"/empty.png"}
+          src={"/empty-dark.png"}
           alt=""
           fill
           className="object-contain dark:block hidden"
