@@ -2,7 +2,10 @@
 import { Cover } from "@/components/cover";
 import { Toolbar } from "@/components/toolbar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useGetSingleDocument } from "@/react-query/hooks";
+import {
+  useGetPublishedDocument,
+  useGetSingleDocument,
+} from "@/react-query/hooks";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import React, { useMemo } from "react";
@@ -12,7 +15,7 @@ const SingleDocument = () => {
   const Editor = dynamic(() => import("@/components/editor"), {
     ssr: false,
   });
-  const { data, isFetching, error } = useGetSingleDocument(
+  const { data, isFetching, error } = useGetPublishedDocument(
     params?.documentId as string
   );
   if (isFetching) {

@@ -173,3 +173,14 @@ export function useUpdateContentMutation() {
     },
   });
 }
+
+export function useGetPublishedDocument(documentId: string) {
+  return useQuery({
+    queryKey: [queryKeys.GET_SINGLE_DOCUMENT, documentId],
+    queryFn: async () => {
+      const { data } = await axios.get(`/documents/public/${documentId}`);
+      return data as Document;
+    },
+    staleTime: 0,
+  });
+}
