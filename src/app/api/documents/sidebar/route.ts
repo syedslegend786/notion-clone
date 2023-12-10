@@ -29,7 +29,6 @@ export async function POST(request: Request) {
         },
       });
     }
-    console.log("documents--->", documents);
     return NextResponse.json(documents, { status: 200 });
   } catch (error: any) {
     console.log(error);

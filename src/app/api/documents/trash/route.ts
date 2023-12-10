@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const session = await getServerSession();
     if (!session) {
-      return new NextResponse("Unauthorized");
+      return new NextResponse("Unauthorized", { status: 401 });
     }
     const archived = await db.document.findMany({
       where: {
