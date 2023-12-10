@@ -29,9 +29,12 @@ export function TrashList() {
   function toggle() {
     setopen(!open);
   }
-  const filteredData = data?.filter((item) =>
-    item.title.toLocaleLowerCase().includes(search.toLowerCase())
-  );
+  const filteredData =
+    data && Array.isArray(data)
+      ? data.filter((item) =>
+          item.title.toLocaleLowerCase().includes(search.toLowerCase())
+        )
+      : [];
   console.log("open===>", status);
   return (
     <Popover
