@@ -9,7 +9,7 @@ export const authOption: AuthOptions = {
     strategy: "jwt",
   },
 
-  debug: process.env.NODE_ENV === "development",
+  debug: true,
   providers: [
     CredentialsProvider({
       name: "Credentials",
