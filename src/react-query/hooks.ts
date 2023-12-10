@@ -106,10 +106,6 @@ export function useUpdateDocumentMutation() {
     onSuccess() {
       queryClient.refetchQueries({
         type: "active",
-        queryKey: [queryKeys.GET_SINGLE_DOCUMENT],
-      });
-      queryClient.refetchQueries({
-        type: "active",
         queryKey: [queryKeys.FETCH_SIDEBAR_DOCUMENTS],
       });
     },
@@ -123,10 +119,10 @@ export function useRemoveIconMutation() {
       return axios.post(`/documents/${documentId}/remove-icon`);
     },
     onSuccess() {
-      queryClient.refetchQueries({
-        type: "active",
-        queryKey: [queryKeys.GET_SINGLE_DOCUMENT],
-      });
+      // queryClient.refetchQueries({
+      //   type: "active",
+      //   queryKey: [queryKeys.GET_SINGLE_DOCUMENT],
+      // });
     },
   });
 }

@@ -23,7 +23,10 @@ export function IconPicker({ children, onChange, asChild }: IconPickerProps) {
   return (
     <Popover>
       <PopoverTrigger asChild={asChild}>{children}</PopoverTrigger>
-      <PopoverContent className="p-0 w-full border-none outline-none">
+      <PopoverContent
+        side="bottom"
+        className="p-0 w-full border-none outline-none"
+      >
         <EmojiPicker
           theme={theme}
           height={350}

@@ -37,7 +37,11 @@ const SingleDocument = () => {
       <Cover coverUrl={data.coverImage ?? ""} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto pt-5">
         <Toolbar initialData={data} />
-        <Editor onChange={handleChange} initialContent={data.content ?? ""} />
+        <Editor
+          onChange={handleChange}
+          initialContent={data.content ?? ""}
+          editable
+        />
       </div>
     </div>
   );

@@ -4,6 +4,8 @@ import { Document } from "@prisma/client";
 import { IconPicker } from "./icon-picker";
 import { Button } from "./ui/button";
 import { ImageIcon, Smile, X } from "lucide-react";
+import { useDebouncedCallback } from "use-debounce";
+
 import React, {
   ElementRef,
   KeyboardEvent,
@@ -38,22 +40,17 @@ export function Toolbar({ initialData, isPreview = false }: ToolbarProps) {
   function stopEditing() {
     setediting(false);
   }
-  function onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      if (!data.title) {
-        setdata((prev) => ({ ...prev, title: "Untitled" }));
-      }
-      stopEditing();
-      let _title = data.title && data.title.trim() ? data.title : "Untitled";
-      mutate({
-        data: { title: _title },
-        documentId: initialData.id,
-      });
-    }
-  }
+  const handleUpdateTitle = useDebouncedCallback((title: string) => {
+    mutate({
+      data: {
+        title,
+      },
+      documentId: initialData.id,
+    });
+  }, 4000);
   function onInputChange(value: string) {
     setdata((prev) => ({ ...prev, title: value }));
+    handleUpdateTitle(value);
   }
   function handleChangeIcon(icon: string) {
     setdata((prev) => ({ ...prev, icon }));
@@ -106,7 +103,6 @@ export function Toolbar({ initialData, isPreview = false }: ToolbarProps) {
         <textarea
           ref={titleRef}
           className="text-5xl font-bold w-full  break-words outline-none border-none"
-          onKeyDown={onKeyDown}
           onBlur={stopEditing}
           value={data.title}
           onChange={(e) => {
