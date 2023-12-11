@@ -111,7 +111,7 @@ export function Navigation() {
       <div
         ref={sidebarRef}
         className={cn(
-          "group/sidebar w-60 bg-secondary/40 overflow-y-auto relative flex flex-col z-[99999]",
+          "group/sidebar w-60 bg-secondary overflow-y-auto relative flex flex-col z-[99999]",
           isResetting && "transition-all ease-in-out",
           isMobile && "w-0"
         )}

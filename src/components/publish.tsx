@@ -13,7 +13,11 @@ interface PublishProps {
   isPublished: boolean;
   documentId: string;
 }
-export function Publish({ documentId, isPublished }: PublishProps) {
+export function Publish({
+  documentId,
+  isPublished: IsPublished,
+}: PublishProps) {
+  const [isPublished, setisPublished] = useState(IsPublished);
   const [copyValue, setCopy] = useCopyToClipboard();
   const [isCopied, setisCopied] = useState(false);
   const [isOpen, setisOpen] = useState(false);
@@ -67,6 +71,7 @@ export function Publish({ documentId, isPublished }: PublishProps) {
                     },
                     {
                       onSuccess() {
+                        setisPublished(true);
                         setisOpen(false);
                       },
                     }
@@ -115,6 +120,7 @@ export function Publish({ documentId, isPublished }: PublishProps) {
                     },
                     {
                       onSuccess() {
+                        setisPublished(false);
                         setisOpen(false);
                       },
                     }
